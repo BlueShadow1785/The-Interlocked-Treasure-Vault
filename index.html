@@ -44,6 +44,8 @@
         cursor: pointer;
         transition: transform 0.2s, filter 0.3s;
         filter: drop-shadow(0 0 10px #c49b3f);
+        display: block;
+        margin: 0 auto;
     }
     .graphic img:hover {
         transform: scale(1.05);
@@ -88,11 +90,7 @@
         line-height: 1.5;
         z-index: 999;
         opacity: 1;
-        animation: fadeOut 2s forwards;
-        animation-delay: 4s;
-    }
-    @keyframes fadeOut {
-        to { opacity: 0; visibility: hidden; }
+        transition: opacity 1.5s ease;
     }
 </style>
 </head>
@@ -112,11 +110,17 @@
 <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2b7e3d6c8b.mp3?filename=click-124467.mp3"></audio>
 
 <script>
-// Start audio after first user interaction
+// Fade out intro after first click
 document.addEventListener("click", () => {
+    const intro = document.getElementById("intro");
+    intro.style.opacity = "0";
+    setTimeout(() => intro.style.display = "none", 1500);
+
+    // Start ambient audio
     const amb = document.getElementById("ambient");
     if (amb.paused) amb.play();
 });
+
 function playClick() {
     document.getElementById("clickSound").play();
 }
@@ -130,7 +134,7 @@ function playClick() {
     <h2>Clue 1 — The Compass</h2>
     <p>“Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Compass_rose_pale.svg"
+        <img src="https://raw.githubusercontent.com/mdn/content/main/files/en-us/glossary/compass_rose/compass_rose.png"
              onclick="playClick(); alert('The sailor points East → Digit = 4')">
     </div>
 </div>
@@ -140,7 +144,7 @@ function playClick() {
     <h2>Clue 2 — The Anchor</h2>
     <p>“Three anchors weigh as much as four crates. One anchor weighs 12 stones.”</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Anchor_icon.svg"
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Anchor_icon.svg/256px-Anchor_icon.svg.png"
              onclick="playClick(); alert('Crates are lighter → Digit = 9')">
     </div>
 </div>
@@ -150,7 +154,7 @@ function playClick() {
     <h2>Clue 3 — The Lantern</h2>
     <p>“Only the path of the lighter burden leads to the lantern’s flame.”</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Antique_Lantern.svg"
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Antique_Lantern.svg/256px-Antique_Lantern.svg.png"
              onclick="playClick(); alert('The lantern reveals the number 7')">
     </div>
 </div>
@@ -160,7 +164,7 @@ function playClick() {
     <h2>Clue 4 — The Treasure Map</h2>
     <p>Follow the journey you’ve taken. The final step ends in 2.</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Treasure_map.svg"
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Treasure_map.svg/256px-Treasure_map.svg.png"
              onclick="playClick(); alert('Final digit = 2')">
     </div>
 </div>
