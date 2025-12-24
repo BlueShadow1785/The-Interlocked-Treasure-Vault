@@ -26,10 +26,10 @@
         transform: translateY(20px);
         animation: fadeInUp 1s forwards;
     }
-    .clue:nth-child(1) { animation-delay: 1s; }
-    .clue:nth-child(2) { animation-delay: 1.5s; }
-    .clue:nth-child(3) { animation-delay: 2s; }
-    .clue:nth-child(4) { animation-delay: 2.5s; }
+    .clue:nth-of-type(1) { animation-delay: 1s; }
+    .clue:nth-of-type(2) { animation-delay: 1.5s; }
+    .clue:nth-of-type(3) { animation-delay: 2s; }
+    .clue:nth-of-type(4) { animation-delay: 2.5s; }
 
     @keyframes fadeInUp {
         to { opacity: 1; transform: translateY(0); }
@@ -41,9 +41,9 @@
     }
     .graphic img {
         width: 180px;
-        filter: drop-shadow(0 0 10px #c49b3f);
         cursor: pointer;
         transition: transform 0.2s, filter 0.3s;
+        filter: drop-shadow(0 0 10px #c49b3f);
     }
     .graphic img:hover {
         transform: scale(1.05);
@@ -88,8 +88,8 @@
         line-height: 1.5;
         z-index: 999;
         opacity: 1;
-        animation: fadeOut 3s forwards;
-        animation-delay: 5s;
+        animation: fadeOut 2s forwards;
+        animation-delay: 4s;
     }
     @keyframes fadeOut {
         to { opacity: 0; visibility: hidden; }
@@ -98,7 +98,7 @@
 </head>
 <body>
 
-<!-- STORY INTRO -->
+<!-- INTRO -->
 <div id="intro">
     <div>
         <p>You stand before the ancient vault of the Lost Corsair.</p>
@@ -107,11 +107,20 @@
     </div>
 </div>
 
-<!-- BACKGROUND AMBIENT SOUND -->
-<audio id="ambient" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4e7f2d6c8b.mp3?filename=dark-ambient-110397.mp3" autoplay loop></audio>
-
-<!-- CLICK SOUND -->
+<!-- AUDIO -->
+<audio id="ambient" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4e7f2d6c8b.mp3?filename=dark-ambient-110397.mp3" loop></audio>
 <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2b7e3d6c8b.mp3?filename=click-124467.mp3"></audio>
+
+<script>
+// Start audio after first user interaction
+document.addEventListener("click", () => {
+    const amb = document.getElementById("ambient");
+    if (amb.paused) amb.play();
+});
+function playClick() {
+    document.getElementById("clickSound").play();
+}
+</script>
 
 <h1>🏴‍☠️ The Interlocked Treasure Vault</h1>
 <p>Solve each interactive clue. When you have the final 4‑digit code, enter it below.</p>
@@ -121,8 +130,8 @@
     <h2>Clue 1 — The Compass</h2>
     <p>“Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Compass_rose_pale.svg/512px-Compass_rose_pale.svg.png"
-             alt="Compass" onclick="playClick(); alert('The sailor points East → Digit = 4')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Compass_rose_pale.svg"
+             onclick="playClick(); alert('The sailor points East → Digit = 4')">
     </div>
 </div>
 
@@ -131,8 +140,8 @@
     <h2>Clue 2 — The Anchor</h2>
     <p>“Three anchors weigh as much as four crates. One anchor weighs 12 stones.”</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Anchor_icon.svg/512px-Anchor_icon.svg.png"
-             alt="Anchor" onclick="playClick(); alert('Crates are lighter → Digit = 9')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Anchor_icon.svg"
+             onclick="playClick(); alert('Crates are lighter → Digit = 9')">
     </div>
 </div>
 
@@ -141,8 +150,8 @@
     <h2>Clue 3 — The Lantern</h2>
     <p>“Only the path of the lighter burden leads to the lantern’s flame.”</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Antique_Lantern.svg/512px-Antique_Lantern.svg.png"
-             alt="Lantern" onclick="playClick(); alert('The lantern reveals the number 7')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Antique_Lantern.svg"
+             onclick="playClick(); alert('The lantern reveals the number 7')">
     </div>
 </div>
 
@@ -151,8 +160,8 @@
     <h2>Clue 4 — The Treasure Map</h2>
     <p>Follow the journey you’ve taken. The final step ends in 2.</p>
     <div class="graphic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Treasure_map.svg/512px-Treasure_map.svg.png"
-             alt="Map" onclick="playClick(); alert('Final digit = 2')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Treasure_map.svg"
+             onclick="playClick(); alert('Final digit = 2')">
     </div>
 </div>
 
@@ -163,10 +172,6 @@
 <div id="result"></div>
 
 <script>
-function playClick() {
-    document.getElementById("clickSound").play();
-}
-
 function checkCode() {
     const input = document.getElementById("codeInput").value;
     const correct = "4972";
