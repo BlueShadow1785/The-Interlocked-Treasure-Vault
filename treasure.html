@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Treasure Revealed</title>
+<style>
+    body {
+        background: #000;
+        color: #ffd27f;
+        font-family: "Trebuchet MS", sans-serif;
+        text-align: center;
+        padding: 60px;
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+    h1 {
+        font-size: 48px;
+        text-shadow: 0 0 20px gold;
+        animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px gold; }
+        to { text-shadow: 0 0 30px gold; }
+    }
+    img {
+        width: 300px;
+        margin-top: 30px;
+        filter: drop-shadow(0 0 20px gold);
+        animation: pulse 2s infinite alternate;
+    }
+    @keyframes pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.05); }
+    }
+    p {
+        font-size: 22px;
+        margin-top: 20px;
+        opacity: 0;
+        animation: fadeIn 3s forwards;
+        animation-delay: 1.5s;
+    }
+</style>
+</head>
+<body>
+
+<!-- VICTORY SOUND -->
+<audio autoplay src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7f2d6c8b.mp3?filename=treasure-112233.mp3"></audio>
+
+<h1>🏆 The Treasure Is Yours!</h1>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Treasure_chest.svg/512px-Treasure_chest.svg.png"
+     alt="Treasure Chest">
+
+<p>You have unlocked the ancient vault and claimed the legendary treasure.</p>
+<p>Your journey was clever, brave, and worthy of a true explorer.</p>
+
+</body>
+</html>
