@@ -110,13 +110,12 @@
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
-// Fade out intro after first click
+// Fade out intro + start audio after first click
 document.addEventListener("click", () => {
     const intro = document.getElementById("intro");
     intro.style.opacity = "0";
     setTimeout(() => intro.style.display = "none", 1500);
 
-    // Start ambient audio
     const amb = document.getElementById("ambient");
     if (amb.paused) amb.play();
 });
