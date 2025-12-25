@@ -272,15 +272,8 @@ function checkCode() {
     const correct = "4972";
 
     if (input === correct) {
-    const victory = new Audio("victory.mp3");
-    victory.play();
-
     document.body.style.opacity = "0";
-
-    // Give the audio a moment to start before redirecting
-    setTimeout(() => {
-        window.location.href = "treasure.html";
-    }, 1200);
+    setTimeout(() => window.location.href = "treasure.html", 1000);
 } else {
         document.getElementById("result").innerHTML =
             "❌ Incorrect code. The vault remains sealed.";
