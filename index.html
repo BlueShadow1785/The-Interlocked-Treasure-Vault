@@ -11,11 +11,44 @@
         padding: 40px;
         line-height: 1.6;
         overflow-x: hidden;
+        opacity: 0;
+        animation: fadeInBody 1s forwards;
+        animation-delay: 1.5s;
     }
+
+    @keyframes fadeInBody {
+        to { opacity: 1; }
+    }
+
+    /* LOADING SCREEN */
+    #loadingScreen {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: #000;
+        color: #ffd27f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        text-shadow: 0 0 15px gold;
+        z-index: 2000;
+        opacity: 1;
+        transition: opacity 1s ease;
+    }
+
     h1, h2 {
         color: #ffd27f;
         text-shadow: 0 0 10px #c49b3f;
     }
+
+    #progress {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #ffd27f;
+        text-shadow: 0 0 5px #c49b3f;
+    }
+
     .clue {
         background: #1e1e1e;
         padding: 20px;
@@ -26,19 +59,15 @@
         transform: translateY(20px);
         animation: fadeInUp 1s forwards;
     }
-    .clue:nth-of-type(1) { animation-delay: 1s; }
-    .clue:nth-of-type(2) { animation-delay: 1.5s; }
-    .clue:nth-of-type(3) { animation-delay: 2s; }
-    .clue:nth-of-type(4) { animation-delay: 2.5s; }
+    .clue:nth-of-type(1) { animation-delay: 2s; }
+    .clue:nth-of-type(2) { animation-delay: 2.5s; }
+    .clue:nth-of-type(3) { animation-delay: 3s; }
+    .clue:nth-of-type(4) { animation-delay: 3.5s; }
 
     @keyframes fadeInUp {
         to { opacity: 1; transform: translateY(0); }
     }
 
-    .graphic {
-        margin: 15px 0;
-        text-align: center;
-    }
     .graphic img {
         width: 180px;
         cursor: pointer;
@@ -52,7 +81,6 @@
         filter: drop-shadow(0 0 20px gold);
     }
 
-    /* Info panels */
     .info-panel {
         background: #2a2a2a;
         border-left: 4px solid #c49b3f;
@@ -68,29 +96,6 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    input {
-        padding: 10px;
-        font-size: 18px;
-        width: 120px;
-        margin-top: 10px;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 18px;
-        background: #c49b3f;
-        border: none;
-        cursor: pointer;
-        margin-left: 10px;
-        border-radius: 4px;
-    }
-    #result {
-        margin-top: 30px;
-        font-size: 24px;
-        font-weight: bold;
-        color: #ff6b6b;
-    }
-
-    /* INTRO OVERLAY */
     #intro {
         position: fixed;
         top: 0; left: 0;
@@ -108,9 +113,33 @@
         opacity: 1;
         transition: opacity 1.5s ease;
     }
+
+    input {
+        padding: 10px;
+        font-size: 18px;
+        width: 120px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background: #c49b3f;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        border-radius: 4px;
+    }
+    #result {
+        margin-top: 30px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff6b6b;
+    }
 </style>
 </head>
 <body>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">Entering the Vault...</div>
 
 <!-- INTRO -->
 <div id="intro">
@@ -124,9 +153,21 @@
 <!-- AUDIO -->
 <audio id="ambient" src="ambient.mp3" loop></audio>
 <audio id="clickSound" src="click.mp3"></audio>
+<audio id="parchmentSound" src="parchment.mp3"></audio>
 
 <script>
-// Fade out intro + start audio after first click
+let cluesRevealed = 0;
+const revealed = { info1: false, info2: false, info3: false, info4: false };
+
+window.onload = () => {
+    setTimeout(() => {
+        document.getElementById("loadingScreen").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("loadingScreen").style.display = "none";
+        }, 1000);
+    }, 1500);
+};
+
 document.addEventListener("click", () => {
     const intro = document.getElementById("intro");
     intro.style.opacity = "0";
@@ -142,22 +183,35 @@ function playClick() {
 
 function toggleInfo(id) {
     const panel = document.getElementById(id);
-    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+
+    if (panel.style.display !== "block") {
+        panel.style.display = "block";
+        document.getElementById("parchmentSound").play();
+
+        if (!revealed[id]) {
+            revealed[id] = true;
+            cluesRevealed++;
+            document.getElementById("progress").innerHTML =
+                `Clues Revealed: ${cluesRevealed} / 4`;
+        }
+    } else {
+        panel.style.display = "none";
+    }
 }
 </script>
 
 <h1>🏴‍☠️ The Interlocked Treasure Vault</h1>
+<div id="progress">Clues Revealed: 0 / 4</div>
+
 <p>Solve each interactive clue. When you have the final 4‑digit code, enter it below.</p>
 
 <!-- CLUE 1 -->
 <div class="clue">
     <h2>Clue 1 — The Compass</h2>
     <p>“Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
-
     <div class="graphic">
         <img src="compass.png" onclick="toggleInfo('info1'); playClick();">
     </div>
-
     <div id="info1" class="info-panel">
         <p>The sailor statue points East.</p>
         <p>Compass numbers: N = 1, E = 4, S = 7, W = 9.</p>
@@ -169,11 +223,9 @@ function toggleInfo(id) {
 <div class="clue">
     <h2>Clue 2 — The Anchor</h2>
     <p>“Three anchors weigh as much as four crates. One anchor weighs 12 stones.”</p>
-
     <div class="graphic">
         <img src="anchor.png" onclick="toggleInfo('info2'); playClick();">
     </div>
-
     <div id="info2" class="info-panel">
         <p>Three anchors weigh 36 stones.</p>
         <p>Four crates also weigh 36 stones → each crate weighs 9 stones.</p>
@@ -185,11 +237,9 @@ function toggleInfo(id) {
 <div class="clue">
     <h2>Clue 3 — The Lantern</h2>
     <p>“Only the path of the lighter burden leads to the lantern’s flame.”</p>
-
     <div class="graphic">
         <img src="lantern.png" onclick="toggleInfo('info3'); playClick();">
     </div>
-
     <div id="info3" class="info-panel">
         <p>The crates are lighter than the anchors.</p>
         <p>The crate‑marked path leads to the lantern.</p>
@@ -202,11 +252,9 @@ function toggleInfo(id) {
 <div class="clue">
     <h2>Clue 4 — The Treasure Map</h2>
     <p>Follow the journey you’ve taken. The final step ends in 2.</p>
-
     <div class="graphic">
         <img src="treasuremap.png" onclick="toggleInfo('info4'); playClick();">
     </div>
-
     <div id="info4" class="info-panel">
         <p>The pattern of digits leads to the final step.</p>
         <p><strong>Digit 4 = 2</strong></p>
