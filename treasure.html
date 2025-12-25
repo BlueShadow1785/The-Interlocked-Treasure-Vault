@@ -102,16 +102,6 @@
 <!-- Victory sound -->
 <audio id="victory" src="victory.mp3"></audio>
 
-<script>
-window.onload = () => {
-    const v = document.getElementById("victory");
-    v.play().catch(() => {
-        // If autoplay is blocked, fall back to click-to-play
-        window.addEventListener("click", () => v.play(), { once: true });
-    });
-};
-</script>
-
 <div id="glow"></div>
 
 <h1>🏆 The Treasure Is Yours!</h1>
@@ -120,6 +110,20 @@ window.onload = () => {
 
 <p>You have unlocked the ancient vault and claimed the legendary treasure.</p>
 <p>Your journey was clever, brave, and worthy of a true explorer.</p>
+    
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    const v = document.getElementById("victory");
 
+    // Try autoplay first
+    v.play().catch(() => {
+        // If autoplay is blocked, wait for first click
+        document.addEventListener("click", function playOnce() {
+            v.play();
+            document.removeEventListener("click", playOnce);
+        });
+    });
+});
+</script>
 </body>
 </html>
