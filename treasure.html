@@ -10,49 +10,129 @@
         font-family: "Trebuchet MS", sans-serif;
         text-align: center;
         padding: 60px;
+        margin: 0;
         opacity: 0;
         animation: fadeIn 2s forwards;
+        overflow: hidden;
     }
+
     @keyframes fadeIn {
         to { opacity: 1; }
     }
+
     h1 {
         font-size: 48px;
         text-shadow: 0 0 20px gold;
         animation: glow 2s infinite alternate;
+        margin-bottom: 20px;
     }
+
     @keyframes glow {
         from { text-shadow: 0 0 10px gold; }
         to { text-shadow: 0 0 30px gold; }
     }
-    img {
-        width: 300px;
-        margin-top: 30px;
-        filter: drop-shadow(0 0 20px gold);
+
+    /* Treasure chest */
+    #chest {
+        width: 350px;
+        margin-top: 20px;
+        filter: drop-shadow(0 0 25px gold);
         animation: pulse 2s infinite alternate;
+        position: relative;
+        z-index: 2;
     }
+
     @keyframes pulse {
         from { transform: scale(1); }
         to { transform: scale(1.05); }
     }
+
+    /* Gold glow behind chest */
+    #glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 550px;
+        height: 550px;
+        background: radial-gradient(circle, rgba(255,215,0,0.4), rgba(0,0,0,0));
+        transform: translate(-50%, -50%);
+        filter: blur(40px);
+        animation: glowPulse 3s infinite alternate;
+        z-index: 1;
+    }
+
+    @keyframes glowPulse {
+        from { opacity: 0.4; }
+        to { opacity: 0.8; }
+    }
+
+    /* Text fade-in */
     p {
         font-size: 22px;
         margin-top: 20px;
         opacity: 0;
-        animation: fadeIn 3s forwards;
+        animation: textFade 2s forwards;
         animation-delay: 1.5s;
+    }
+
+    @keyframes textFade {
+        to { opacity: 1; }
+    }
+
+    /* Sparkle particles */
+    .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: gold;
+        border-radius: 50%;
+        opacity: 0;
+        animation: sparkleAnim 3s infinite;
+    }
+
+    @keyframes sparkleAnim {
+        0% { opacity: 0; transform: translateY(0) scale(1); }
+        50% { opacity: 1; transform: translateY(-40px) scale(1.5); }
+        100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
     }
 </style>
 </head>
 <body>
 
-<!-- VICTORY SOUND -->
-<audio autoplay src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7f2d6c8b.mp3?filename=treasure-112233.mp3"></audio>
+<!-- Victory sound -->
+<audio id="victory" src="victory.mp3"></audio>
+
+<script>
+// Play victory sound after first click
+window.addEventListener("click", () => {
+    const v = document.getElementById("victory");
+    if (v.paused) v.play();
+});
+
+// Generate sparkles
+function createSparkle() {
+    const s = document.createElement("div");
+    s.classList.add("sparkle");
+    document.body.appendChild(s);
+
+    const x = Math.random() * window.innerWidth;
+    const y = window.innerHeight - 150;
+
+    s.style.left = x + "px";
+    s.style.top = y + "px";
+    s.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+    setTimeout(() => s.remove(), 4000);
+}
+
+setInterval(createSparkle, 300);
+</script>
+
+<div id="glow"></div>
 
 <h1>🏆 The Treasure Is Yours!</h1>
 
-<img src="treasurechest.png"
-     alt="Treasure Chest">
+<img id="chest" src="treasurechest.png" alt="Treasure Chest">
 
 <p>You have unlocked the ancient vault and claimed the legendary treasure.</p>
 <p>Your journey was clever, brave, and worthy of a true explorer.</p>
