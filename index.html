@@ -212,12 +212,12 @@ function toggleInfo(id) {
 <!-- CLUE 1 -->
 <div class="clue">
     <h2>Clue 1 — The Compass</h2>
-    <p>“You approach a stone archway leading to a room containing a single statue of a sailor. Carved into the archway is this message: Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
+    <p>You approach a stone archway leading to a room containing a single statue of a sailor. Carved into the archway is this message: "Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
     <div class="graphic">
         <img src="compass.png" onclick="toggleInfo('info1'); playClick();">
     </div>
     <div id="info1" class="info-panel">
-        <p>The sailor statue points to the rising sun.</p>
+        <p>You notice that the sailor statue points to the rising sun.</p>
         <p>A small inscription beneath the compass rose imprinted on the statue reads as follows: N1, E4, S7, W9.</p>
     </div>
 </div>
@@ -225,42 +225,43 @@ function toggleInfo(id) {
 <!-- CLUE 2 -->
 <div class="clue">
     <h2>Clue 2 — The Anchor</h2>
-    <p>“On the floor is a mosaic of three anchors and four crates.”</p>
+    <p>On the floor is a mosaic of three anchors and four crates.</p>
     <div class="graphic">
         <img src="anchor.png" onclick="toggleInfo('info2'); playClick();">
     </div>
     <div id="info2" class="info-panel">
         <p>The weight of the crates equals the weight of the anchors.</p>
         <p>One anchor weighs 12 stones.</p>
-        <p>The journey begins where the lighter load rests.</p>
+        <p>A message within the mosaic reads as follows: "The journey begins where the lighter load rests."</p>
     </div>
 </div>
 
 <!-- CLUE 3 -->
 <div class="clue">
     <h2>Clue 3 — The Lantern</h2>
-    <p>“A lantern hangs above a carved path with three branching routes. Path A is marked with anchors. Path B is marked with crates. Path C is marked with skulls. Only the path of the lighter burden leads to the lantern’s flame.”</p>
+    <p>An unlit lantern hangs above a carved path with three branching routes. Path A is marked with anchors. Path B is marked with crates. Path C is marked with skulls.</p>
     <div class="graphic">
         <img src="lantern.png" onclick="toggleInfo('info3'); playClick();">
     </div>
     <div id="info3" class="info-panel">
+        <p>An inscription on a wall near the unlit lantern reads as follows: "Only the path of the lighter burden leads to the light."</p>
         <p>The lantern's flame reveals truth only when approached from the correct path.</p>
-        <p>At the base of the lantern is an inscription that reads as follows: A5, C7, S8.</p>
+        <p>At the base of the lantern is an inscription that reads as follows: A-V, C-VII, S-X.</p>
     </div>
 </div>
 
 <!-- CLUE 4 -->
 <div class="clue">
     <h2>Clue 4 — The Treasure Map</h2>
-    <p>"The lantern reveals a map fragment which reads as follows: Compass Isle -> Anchor Isle -> Lantern Isle -> X."</p>
+    <p>The light of the lantern reveals a map fragment which reads as follows: "Compass Isle -> Anchor Isle -> Lantern Isle -> X."</p>
     <div class="graphic">
         <img src="treasuremap.png" onclick="toggleInfo('info4'); playClick();">
     </div>
     <div id="info4" class="info-panel">
-        <p>Follow the journey you have taken. Add the steps you know, and the final step reveals itself.</p>
+        <p>The map fragment includes the following statement: "Follow the journey you have taken. Add the steps you know, and the final step reveals itself."</p>
         <p>The map fragment traces the journey you've taken through the previous clues.</p>
         <p>Follow the sequence of discoveries to find the final step.</p>
-        <p>The last location on the map corresponds to the final digit</p>
+        <p>The last location on the map corresponds to the final digit.</p>
     </div>
 </div>
 
