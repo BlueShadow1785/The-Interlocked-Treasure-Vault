@@ -52,6 +52,22 @@
         filter: drop-shadow(0 0 20px gold);
     }
 
+    /* Info panels */
+    .info-panel {
+        background: #2a2a2a;
+        border-left: 4px solid #c49b3f;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 6px;
+        display: none;
+        animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     input {
         padding: 10px;
         font-size: 18px;
@@ -123,6 +139,11 @@ document.addEventListener("click", () => {
 function playClick() {
     document.getElementById("clickSound").play();
 }
+
+function toggleInfo(id) {
+    const panel = document.getElementById(id);
+    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+}
 </script>
 
 <h1>🏴‍☠️ The Interlocked Treasure Vault</h1>
@@ -132,9 +153,15 @@ function playClick() {
 <div class="clue">
     <h2>Clue 1 — The Compass</h2>
     <p>“Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
+
     <div class="graphic">
-        <img src="compass.png"
-             onclick="playClick(); alert('The sailor points East → Digit = 4')">
+        <img src="compass.png" onclick="toggleInfo('info1'); playClick();">
+    </div>
+
+    <div id="info1" class="info-panel">
+        <p>The sailor statue points East.</p>
+        <p>Compass numbers: N = 1, E = 4, S = 7, W = 9.</p>
+        <p><strong>Digit 1 = 4</strong></p>
     </div>
 </div>
 
@@ -142,9 +169,15 @@ function playClick() {
 <div class="clue">
     <h2>Clue 2 — The Anchor</h2>
     <p>“Three anchors weigh as much as four crates. One anchor weighs 12 stones.”</p>
+
     <div class="graphic">
-        <img src="anchor.png"
-             onclick="playClick(); alert('Crates are lighter → Digit = 9')">
+        <img src="anchor.png" onclick="toggleInfo('info2'); playClick();">
+    </div>
+
+    <div id="info2" class="info-panel">
+        <p>Three anchors weigh 36 stones.</p>
+        <p>Four crates also weigh 36 stones → each crate weighs 9 stones.</p>
+        <p><strong>Digit 2 = 9</strong></p>
     </div>
 </div>
 
@@ -152,9 +185,16 @@ function playClick() {
 <div class="clue">
     <h2>Clue 3 — The Lantern</h2>
     <p>“Only the path of the lighter burden leads to the lantern’s flame.”</p>
+
     <div class="graphic">
-        <img src="lantern.png"
-             onclick="playClick(); alert('The lantern reveals the number 7')">
+        <img src="lantern.png" onclick="toggleInfo('info3'); playClick();">
+    </div>
+
+    <div id="info3" class="info-panel">
+        <p>The crates are lighter than the anchors.</p>
+        <p>The crate‑marked path leads to the lantern.</p>
+        <p>The lantern base shows the number 7.</p>
+        <p><strong>Digit 3 = 7</strong></p>
     </div>
 </div>
 
@@ -162,9 +202,14 @@ function playClick() {
 <div class="clue">
     <h2>Clue 4 — The Treasure Map</h2>
     <p>Follow the journey you’ve taken. The final step ends in 2.</p>
+
     <div class="graphic">
-        <img src="treasuremap.png"
-             onclick="playClick(); alert('Final digit = 2')">
+        <img src="treasuremap.png" onclick="toggleInfo('info4'); playClick();">
+    </div>
+
+    <div id="info4" class="info-panel">
+        <p>The pattern of digits leads to the final step.</p>
+        <p><strong>Digit 4 = 2</strong></p>
     </div>
 </div>
 
