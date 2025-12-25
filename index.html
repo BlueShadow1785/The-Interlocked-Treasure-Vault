@@ -208,56 +208,55 @@ function toggleInfo(id) {
 <!-- CLUE 1 -->
 <div class="clue">
     <h2>Clue 1 — The Compass</h2>
-    <p>“Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
+    <p>“You approach a stone archway leading to a room containing a single statue of a sailor. Carved into the archway is this message: Seek the direction of the first guardian. His gaze points where the journey begins.”</p>
     <div class="graphic">
         <img src="compass.png" onclick="toggleInfo('info1'); playClick();">
     </div>
     <div id="info1" class="info-panel">
-        <p>The sailor statue points East.</p>
-        <p>Compass numbers: N = 1, E = 4, S = 7, W = 9.</p>
-        <p><strong>Digit 1 = 4</strong></p>
+        <p>The sailor statue points to the rising sun.</p>
+        <p>A small inscription beneath the compass rose imprinted on the statue reads as follows: N1, E4, S7, W9.</p>
     </div>
 </div>
 
 <!-- CLUE 2 -->
 <div class="clue">
     <h2>Clue 2 — The Anchor</h2>
-    <p>“Three anchors weigh as much as four crates. One anchor weighs 12 stones.”</p>
+    <p>“On the floor is a mosaic of three anchors and four crates.”</p>
     <div class="graphic">
         <img src="anchor.png" onclick="toggleInfo('info2'); playClick();">
     </div>
     <div id="info2" class="info-panel">
-        <p>Three anchors weigh 36 stones.</p>
-        <p>Four crates also weigh 36 stones → each crate weighs 9 stones.</p>
-        <p><strong>Digit 2 = 9</strong></p>
+        <p>The weight of the crates equals the weight of the anchors.</p>
+        <p>One anchor weighs 12 stones.</p>
+        <p>The journey begins where the lighter load rests.</p>
     </div>
 </div>
 
 <!-- CLUE 3 -->
 <div class="clue">
     <h2>Clue 3 — The Lantern</h2>
-    <p>“Only the path of the lighter burden leads to the lantern’s flame.”</p>
+    <p>“A lantern hangs above a carved path with three branching routes. Path A is marked with anchors. Path B is marked with crates. Path C is marked with skulls. Only the path of the lighter burden leads to the lantern’s flame.”</p>
     <div class="graphic">
         <img src="lantern.png" onclick="toggleInfo('info3'); playClick();">
     </div>
     <div id="info3" class="info-panel">
-        <p>The crates are lighter than the anchors.</p>
-        <p>The crate‑marked path leads to the lantern.</p>
-        <p>The lantern base shows the number 7.</p>
-        <p><strong>Digit 3 = 7</strong></p>
+        <p>The lantern's flame reveals truth only when approached from the correct path.</p>
+        <p>At the base of the lantern is an inscription that reads as follows: A5, C7, S8.</p>
     </div>
 </div>
 
 <!-- CLUE 4 -->
 <div class="clue">
     <h2>Clue 4 — The Treasure Map</h2>
-    <p>Follow the journey you’ve taken. The final step ends in 2.</p>
+    <p>"The lantern reveals a map fragment which reads as follows: Compass Isle -> Anchor Isle -> Lantern Isle -> X."</p>
     <div class="graphic">
         <img src="treasuremap.png" onclick="toggleInfo('info4'); playClick();">
     </div>
     <div id="info4" class="info-panel">
-        <p>The pattern of digits leads to the final step.</p>
-        <p><strong>Digit 4 = 2</strong></p>
+        <p>Follow the journey you have taken. Add the steps you know, and the final step reveals itself.</p>
+        <p>The map fragment traces the journey you've taken through the previous clues.</p>
+        <p>Follow the sequence of discoveries to find the final step.</p>
+        <p>The last location on the map corresponds to the final digit</p>
     </div>
 </div>
 
