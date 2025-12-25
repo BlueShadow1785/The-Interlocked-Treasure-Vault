@@ -122,6 +122,15 @@ function createSparkle() {
 
 setInterval(createSparkle, 300);
 </script>
+<script>
+window.onload = () => {
+    const v = document.getElementById("victory");
+    v.play().catch(() => {
+        // If autoplay is blocked, fall back to click-to-play
+        window.addEventListener("click", () => v.play(), { once: true });
+    });
+};
+</script>
 
 <div id="glow"></div>
 
