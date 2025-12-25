@@ -273,7 +273,7 @@ function checkCode() {
 
     if (input === correct) {
     document.body.style.opacity = "0";
-    setTimeout(() => window.location.href = "treasure.html", 1000);
+    setTimeout(() => window.location.href = "treasure.html?v=2", 1000);
 } else {
         document.getElementById("result").innerHTML =
             "❌ Incorrect code. The vault remains sealed.";
