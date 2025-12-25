@@ -110,23 +110,6 @@ window.onload = () => {
         window.addEventListener("click", () => v.play(), { once: true });
     });
 };
-// Generate sparkles
-function createSparkle() {
-    const s = document.createElement("div");
-    s.classList.add("sparkle");
-    document.body.appendChild(s);
-
-    const x = Math.random() * window.innerWidth;
-    const y = window.innerHeight - 150;
-
-    s.style.left = x + "px";
-    s.style.top = y + "px";
-    s.style.animationDuration = (2 + Math.random() * 2) + "s";
-
-    setTimeout(() => s.remove(), 4000);
-}
-
-setInterval(createSparkle, 300);
 </script>
 
 <div id="glow"></div>
